@@ -10,35 +10,43 @@ export class AppComponent {
 
   mainNumber: string = "";
   mainNumberTemp: string = "";
+  placeholderNumber: string = "0";
 
-  plusActive: boolean = false;
+  opActive: boolean = false;
+  addActive: boolean = false;
+  subActive: boolean = false;
 
   texts: any[] = [];
 
 
+  // Some Helper's Functions
 
   toggleColor() {
     var x = document.getElementById("plusButton");
     var currentColor = window.getComputedStyle(x, null).backgroundColor;
 
-    if (currentColor = "#e0ae09") {
+    if (this.opActive == true) {
       x.style.color = "#e0ae09";
       x.style.backgroundColor = "white";
     } else {
-      x.style.backgroundColor = "#e0ae09";
       x.style.color = "white";
+      x.style.backgroundColor = "#e0ae09";
     }
   }
 
-  // Calculator's Buttons
 
+  // Operation's buttons
+
+  
   btAc() {
 
     if (this.mainNumber != "") {
       this.texts.push("Cleaned! Last Result = " + this.mainNumber);
       this.mainNumber = "";
       this.mainNumberTemp = "";
+      this.placeholderNumber = "0";
       var x = document.getElementById("plusButton");
+      this.opActive = false;
       this.toggleColor();
     }
     else {
@@ -46,72 +54,83 @@ export class AppComponent {
     };
   }
 
-  // Operation's buttons
-
   btPlus() {
-    this.mainNumberTemp = this.mainNumber;
-    this.toggleColor();
-    this.plusActive = true;
+    if (this.mainNumber !== ""){
+      this.mainNumberTemp = this.mainNumber;
+      this.placeholderNumber = this.mainNumber;
+      this.addActive = true;
+      this.opActive = true;
+      this.toggleColor();
+      this.mainNumber = "";
+    }
+    else{
+      return;
+    };
+    
 
   }
 
   btEquals() {
-    var plusResult = parseInt(this.mainNumberTemp) + parseInt(this.mainNumber);
+    if (this.mainNumberTemp == "") {
+      return;
+    }
+    else{
+    this.opActive = false;
+    this.toggleColor();
+    var plusResult = parseFloat(this.mainNumberTemp) + parseFloat(this.mainNumber);
+    this.texts.push("Sum's result of " + this.mainNumberTemp + " + " + this.mainNumber + " = " + this.mainNumber);
     this.mainNumber = plusResult.toString();
-    this.plusActive = false;
-    this.texts.push("Sum's result = " + this.mainNumber);
+    
+    this.mainNumberTemp = "";
+  }
 
   }
 
   // Numbers
 
   btOne() {
-    if (this.plusActive = true) {
-      this.mainNumber = "1";
-    }
-    else {
       this.mainNumber = this.mainNumber + "1";
-    };
+    
   }
 
   btTwo() {
-    this.mainNumber = this.mainNumber + "2";
+      this.mainNumber = this.mainNumber + "2";
   }
 
   btThree() {
-    this.mainNumber = this.mainNumber + "3";
+      this.mainNumber = this.mainNumber + "3";
   }
 
   btFour() {
-    this.mainNumber = this.mainNumber + "4";
+      this.mainNumber = this.mainNumber + "4";
   }
 
   btFive() {
-    this.mainNumber = this.mainNumber + "5";
+      this.mainNumber = this.mainNumber + "5";
   }
 
   btSix() {
-    this.mainNumber = this.mainNumber + "6";
+      this.mainNumber = this.mainNumber + "6";
   }
 
   btSeven() {
-    this.mainNumber = this.mainNumber + "7";
+      this.mainNumber = this.mainNumber + "7";
   }
 
   btEight() {
-    this.mainNumber = this.mainNumber + "8";
+      this.mainNumber = this.mainNumber + "8";
   }
 
   btNine() {
-    this.mainNumber = this.mainNumber + "9";
+      this.mainNumber = this.mainNumber + "9";
   }
 
   btZero() {
-    this.mainNumber = this.mainNumber + "0";
+      this.mainNumber = this.mainNumber + "0";
   }
 
   btComma() {
-    if (this.mainNumber.indexOf(",") === -1 && this.mainNumber !== null) {
+    if (this.mainNumber.indexOf(",") === -1 ) {
       this.mainNumber = this.mainNumber + ",";
     }
     else {
