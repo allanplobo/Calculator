@@ -1,9 +1,8 @@
 # Calculator
+Hello, Welcome! This is a Simple Project, just to practice!
+Did you find something to improve the code?
+Please, Contact me, i'll love learn more hearing you! =)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
-It's a Simple Project, just to pratice! =)
-
-Did you find something to improve? 
-Please, Contact me, i'll love learn more hearing you! =]
+This project uses: Angular 9, Bootstrap 4;
 
 linkedin.com/in/allanplobo
