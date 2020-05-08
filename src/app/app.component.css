@@ -1,0 +1,143 @@
+/* Let's build our iPho... Ops, Smartphone xD */
+
+#smartphone {
+    width: 240px;
+    height: 500px;
+    padding-top: 150px;
+    float: left;
+    background-color: black;
+    box-shadow: 2px 2px 2px 2px rgb(109, 108, 108);
+    border: 1px solid rgb(92, 92, 92);
+    border-radius: 45px;
+}
+
+#screen {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 360px;
+    /* background-color: red; */
+}
+
+#calculator {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    /* background-color: blue; */
+}
+
+#number {
+    width: 100%;
+    float: right;
+    text-align: right;
+    color: white;
+    padding-right: 9%;
+    font-size: 48px;
+    font-family: Helvetica, Arial;
+    background-color: black;
+    border: none;
+    outline: 0;
+}
+
+#number-display {
+    width: 100%;
+    float: right;
+    text-align: right;
+    color: white;
+    padding-right: 9%;
+    font-size: 48px;
+    font-family: Helvetica, Arial;
+    background-color: black;
+    border: none;
+    outline: 0;
+}
+
+#calculator-buttons {
+    padding: 0;
+    margin: 0;
+    padding-left: 7%;
+}
+
+#gesture-space {
+    margin-top: 18px;
+    width: 75px;
+    height: 3px;
+    border-radius: 9px 9px 9px 9px;
+    background-color: white;
+}
+
+.button {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    margin-right: 3%;
+    margin-bottom: 5%;
+    text-align: center;
+    outline: 0;
+}
+
+.button-color-white {
+    background-color: #a8a8a8;
+    color: black;
+    text-align: center;
+    border: none;
+}
+
+.button-color-orange {
+    background-color: #e0ae09;
+    color: white;
+    text-align: center;
+    border: none;
+}
+
+.button-color-grey {
+    background-color: #535353 !important;
+    color: white;
+    text-align: center;
+    border: none;
+}
+
+.zero-button {
+    list-style: circle;
+    text-align: left;
+    width: 85px;
+    height: 40px;
+    border-radius: 50px 50px 50px 50px;
+}
+
+
+/* Let's remove... */
+
+::placeholder {
+    color: white;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/* Now, The "paper" */
+
+#paper {
+    background-image: url('../assets/paperImage.jpg');
+    float: right;
+    border: 1px groove #0e0e0e;
+    width: 350px;
+    height: 500px;
+    padding-top: 3%;
+    font-family: 'Amatic SC', cursive;
+    font-size: 18px;
+}
