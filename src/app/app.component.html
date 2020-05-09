@@ -2,29 +2,29 @@
     <div id="screen">
         <div style="width: 100%; padding: 0;">
             <div id="calculator">
-                <input type="text" mask="999.999" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}">
+                <input type="number" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}">
                 <div class="container" id="calculator-buttons">
                     <button class="button-color-white btn btn-light button" (click)="btAc()">AC</button>
                     <button class="button-color-white btn btn-light button ">+/-</button>
                     <button class="button-color-white btn btn-light button ">%</button>
-                    <button class="button-color-orange btn btn-light button ">/</button>
+                    <button class="button-color-orange btn btn-light button " (click)="mathOp('/')">/</button>
                     <br>
-                    <button class="button-color-grey btn btn-light button " (click)="btSeven()">7</button>
-                    <button class="button-color-grey btn btn-light button " (click)="btEight()">8</button>
-                    <button class=" button-color-grey btn btn-light button " (click)="btNine()">9</button>
-                    <button class="button-color-orange btn btn-light button ">*</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('7')">7</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('8')">8</button>
+                    <button class=" button-color-grey btn btn-light button " (click)="addNumber('9')">9</button>
+                    <button class="button-color-orange btn btn-light button " (click)="mathOp('*')">*</button>
                     <br>
-                    <button class="button-color-grey btn btn-light button " (click)="btFour()">4</button>
-                    <button class="button-color-grey btn btn-light button " (click)="btFive()">5</button>
-                    <button class="button-color-grey btn btn-light button " (click)="btSix()">6</button>
-                    <button class="button-color-orange btn btn-light button ">-</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('4')">4</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('5')">5</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('6')">6</button>
+                    <button class="button-color-orange btn btn-light button " (click)="mathOp('-')">-</button>
                     <br>
-                    <button class="button-color-grey btn btn-light button " (click)="btOne()">1</button>
-                    <button class="button-color-grey btn btn-light button " (click)="btTwo()">2</button>
-                    <button class="button-color-grey btn btn-light button " (click)="btThree()">3</button>
-                    <button class="button-color-orange btn btn-light button " (click)="btPlus()" id="plusButton">+</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('1')">1</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('2')">2</button>
+                    <button class="button-color-grey btn btn-light button " (click)="addNumber('3')">3</button>
+                    <button class="button-color-orange btn btn-light button " (click)="mathOp('+')" id="plusButton">+</button>
                     <br>
-                    <button class="button-color-grey btn btn-light button zero-button" (click)="btZero()">0</button>
+                    <button class="button-color-grey btn btn-light button zero-button" (click)="addNumber('0')">0</button>
                     <button class="button-color-grey btn btn-light button " (click)="btComma()">,</button>
                     <button class="button-color-orange btn btn-light button " (click)="btEquals()"> = </button>
                 </div>

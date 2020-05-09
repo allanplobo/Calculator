@@ -6,21 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Calculator';
 
   mainNumber: string = "";
   mainNumberTemp: string = "";
   placeholderNumber: string = "0";
 
   opActive: boolean = false;
-  addActive: boolean = false;
-  subActive: boolean = false;
+  operation: string = "";
 
   texts: any[] = [];
 
 
   // Some Helper's Functions
 
+  // This one, changes the color of Operation's buttons!
   toggleColor() {
     var x = document.getElementById("plusButton");
     var currentColor = window.getComputedStyle(x, null).backgroundColor;
@@ -37,7 +36,7 @@ export class AppComponent {
 
   // Operation's buttons
 
-  
+
   btAc() {
 
     if (this.mainNumber != "") {
@@ -54,19 +53,19 @@ export class AppComponent {
     };
   }
 
-  btPlus() {
-    if (this.mainNumber !== ""){
+  mathOp(operation) {
+    if (this.mainNumber !== "") {
       this.mainNumberTemp = this.mainNumber;
       this.placeholderNumber = this.mainNumber;
-      this.addActive = true;
       this.opActive = true;
+      this.operation = operation;
       this.toggleColor();
       this.mainNumber = "";
     }
-    else{
+    else {
       return;
     };
-    
+
 
   }
 
@@ -74,63 +73,23 @@ export class AppComponent {
     if (this.mainNumberTemp == "") {
       return;
     }
-    else{
-    this.opActive = false;
-    this.toggleColor();
-    var plusResult = parseFloat(this.mainNumberTemp) + parseFloat(this.mainNumber);
-    this.texts.push("Sum's result of " + this.mainNumberTemp + " + " + this.mainNumber + " = " + this.mainNumber);
-    this.mainNumber = plusResult.toString();
-    
-    this.mainNumberTemp = "";
-  }
+    else {
+      this.opActive = false;
+      this.toggleColor();
+      var array = [this.mainNumberTemp, this.operation, this.mainNumber];
+      var result = eval(array[0] + array[1] + array[2]);
+      this.texts.push("The result of " + this.mainNumberTemp + this.operation + this.mainNumber + " = " + result);
+      this.mainNumber = result;
+    }
 
   }
 
-  // Numbers
-
-  btOne() {
-      this.mainNumber = this.mainNumber + "1";
-    
-  }
-
-  btTwo() {
-      this.mainNumber = this.mainNumber + "2";
-  }
-
-  btThree() {
-      this.mainNumber = this.mainNumber + "3";
-  }
-
-  btFour() {
-      this.mainNumber = this.mainNumber + "4";
-  }
-
-  btFive() {
-      this.mainNumber = this.mainNumber + "5";
-  }
-
-  btSix() {
-      this.mainNumber = this.mainNumber + "6";
-  }
-
-  btSeven() {
-      this.mainNumber = this.mainNumber + "7";
-  }
-
-  btEight() {
-      this.mainNumber = this.mainNumber + "8";
-  }
-
-  btNine() {
-      this.mainNumber = this.mainNumber + "9";
-  }
-
-  btZero() {
-      this.mainNumber = this.mainNumber + "0";
+  addNumber(number) {
+    this.mainNumber = this.mainNumber + number;
   }
 
   btComma() {
-    if (this.mainNumber.indexOf(",") === -1 ) {
+    if (this.mainNumber.indexOf(",") === -1) {
       this.mainNumber = this.mainNumber + ",";
     }
     else {
