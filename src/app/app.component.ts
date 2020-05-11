@@ -8,10 +8,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   mainNumber: string = "";
-  mainNumberTemp: string = "";
+  firstNumber: string = "";
+  lastNumber: string = "";
   placeholderNumber: string = "0";
 
   opActive: boolean = false;
+  didAEquals: boolean = false
   operation: string = "";
   btSelect: string = "";
   texts: any[] = [];
@@ -32,13 +34,19 @@ export class AppComponent {
     }
   }
 
+  // The "magic"!
   doOperation(n1: string, n2: string, o1: string) {
-    var array = [this.mainNumberTemp, this.operation, this.mainNumber];
+    var array = [this.firstNumber, this.operation, this.mainNumber];
     var result = eval(array[0] + array[1] + array[2]);
-    var textResult = this.texts.push("The result of " + this.mainNumberTemp + this.operation + this.mainNumber + " = " + result);
-
-    return {result, textResult};
+    this.texts.push("The result of " + this.firstNumber + this.operation + this.mainNumber + " = " + result);
+    this.firstNumber = result;
+    this.mainNumber = "";
+    this.placeholderNumber = result;
+    return result;
   }
+
+  // Input treatment
+
 
 
   // Operation's buttons
@@ -46,17 +54,34 @@ export class AppComponent {
 
   mathOp(operation, id: string) {
     if (this.mainNumber !== "") {
-      this.mainNumberTemp = this.mainNumber;
-      this.placeholderNumber = this.mainNumber;
+      if (this.opActive == false) {
+        this.firstNumber = this.mainNumber;
+        this.placeholderNumber = this.mainNumber;
+        this.opActive = true;
+        this.operation = operation;
+        this.btSelect = id;
+        this.toggleColor(id);
+        this.mainNumber = "";
+      }
+      else {
+        this.firstNumber = this.doOperation(this.mainNumber, this.firstNumber, this.operation);
+        this.operation = operation;
+        this.opActive = false;
+        this.toggleColor(this.btSelect);
+        this.opActive = true;
+        this.btSelect = id;
+        this.toggleColor(id);
+      }
+
+    }
+    else if (this.opActive == true) {
+      this.opActive = false;
+      this.toggleColor(this.btSelect);
       this.opActive = true;
-      this.operation = operation;
       this.btSelect = id;
       this.toggleColor(id);
-      this.mainNumber = "";
+      this.operation = operation;
     }
-    else if (this.mainNumber !== "" && this.opActive == true) {
-      this.toggleColor(id);
-    };
   }
 
   btAc() {
@@ -64,27 +89,30 @@ export class AppComponent {
     if (this.mainNumber !== "" || this.opActive == true) {
       this.texts.push("Cleaned! Last Result = " + this.mainNumber);
       this.mainNumber = "";
-      this.mainNumberTemp = "";
+      this.firstNumber = "";
       this.placeholderNumber = "0";
-      var x = document.getElementById(this.btSelect);
       this.opActive = false;
       this.toggleColor(this.btSelect);
     }
     else {
+      this.placeholderNumber = "0";
       return;
     };
   }
 
 
   btEquals() {
-    if (this.mainNumberTemp == "") {
+    if (this.firstNumber == "") {
       return;
     }
     else {
+      this.lastNumber = this.firstNumber;
+      this.didAEquals = true;
+      console.log(this.firstNumber, this.mainNumber, this.operation);
       this.opActive = false;
       this.toggleColor(this.btSelect);
-      var x = this.doOperation(this.mainNumber, this.mainNumberTemp, this.operation);
-      this.mainNumber = x.result;
+      var x = this.doOperation(this.mainNumber, this.firstNumber, this.operation);
+      console.log(this.firstNumber, this.mainNumber, this.operation);
     }
 
   }
@@ -95,7 +123,7 @@ export class AppComponent {
 
   btComma() {
     if (this.mainNumber.indexOf(",") === -1) {
-      this.mainNumber = this.mainNumber + ",";
+      this.mainNumber = this.mainNumber + ".";
     }
     else {
       return;
