@@ -50,43 +50,13 @@ export class AppComponent {
     return result;
   }
 
-  // Input treatment
+  // The percent "magic"!
+  doPercent() {
+    if (this.mainNumber) {
 
-
-
-
-
-  mathOp(operation, id: string) {
-    if (this.mainNumber !== "") {
-      if (this.opActive == false) {
-        this.firstNumber = this.mainNumber;
-        this.placeholderNumber = this.mainNumber;
-        this.opActive = true;
-        this.operation = operation;
-        this.btSelect = id;
-        this.toggleColor(id);
-        this.mainNumber = "";
-      }
-      else {
-        this.firstNumber = this.doOperation(this.mainNumber, this.firstNumber, this.operation);
-        this.operation = operation;
-        this.opActive = false;
-        this.toggleColor(this.btSelect);
-        this.opActive = true;
-        this.btSelect = id;
-        this.toggleColor(id);
-      }
-
-    }
-    else if (this.opActive == true) {
-      this.opActive = false;
-      this.toggleColor(this.btSelect);
-      this.opActive = true;
-      this.btSelect = id;
-      this.toggleColor(id);
-      this.operation = operation;
     }
   }
+
 
   // BUTTONS 
 
@@ -106,10 +76,41 @@ export class AppComponent {
       this.texts.push("Cleaned! Last Result = " + this.placeholderNumber);
       this.placeholderNumber = "0";
       this.didAEquals = false;
+      this.lastNumber = "";
+      this.firstNumber = "";
     }
     else {
       return;
-    };
+    }
+  }
+
+
+  // When you click "+/-"
+  btPosNeg() {
+    if (this.mainNumber !== "") {
+      this.mainNumber = (parseFloat(this.mainNumber) * -1).toString();
+    } else if (this.firstNumber !== "") {
+      this.mainNumber = (parseFloat(this.firstNumber) * -1).toString();
+    } else {
+      return;
+    }
+  }
+
+  // When you click "%"
+  btPerc() {
+    if (this.mainNumber == "") {
+      return;
+    }
+    else if (this.mainNumber.indexOf("%") === -1 && this.mainNumber !== "" && this.opActive == true) {
+      this.mainNumber = this.mainNumber + "%";
+    }
+    else {
+      this.mainNumber = this.mainNumber + "%";
+      this.texts.push("The result of 0 * " + this.mainNumber + " = 0");
+      this.mainNumber = "";
+      this.lastNumber = "0";
+      this.placeholderNumber = "0";
+    }
   }
 
   // When you click "="
@@ -117,7 +118,10 @@ export class AppComponent {
     if (this.firstNumber == "") {
       return;
     }
-    else if (this.didAEquals == false) {
+    else if (this.mainNumber !== "" && this.opActive == false) {
+      this.mainNumber = "0";
+    }
+    else if (this.didAEquals == false || this.didAEquals == true) {
       this.lastNumber = this.firstNumber;
       this.didAEquals = true;
       console.log(this.firstNumber, this.mainNumber, this.operation);
@@ -129,8 +133,51 @@ export class AppComponent {
     else {
       this.doOperation(this.lastNumber, this.operation, this.placeholderNumber);
     }
-
   }
+
+  // When you click in some operator button
+  mathOp(operation, id: string) {
+    if (this.mainNumber !== "") {
+      // this If is to check if will sum now or not;
+      if (this.opActive == false) {
+        this.firstNumber = this.mainNumber;
+        this.placeholderNumber = this.mainNumber;
+        this.opActive = true;
+        this.operation = operation;
+        this.btSelect = id;
+        this.toggleColor(id);
+        this.mainNumber = "";
+      }
+      else {
+        this.firstNumber = this.doOperation(this.firstNumber, this.operation, this.mainNumber);
+        this.operation = operation;
+        this.opActive = false;
+        this.toggleColor(this.btSelect);
+        this.opActive = true;
+        this.btSelect = id;
+        this.toggleColor(id);
+      }
+    } else if (this.opActive == true) {
+      this.opActive = false;
+      this.toggleColor(this.btSelect);
+      this.opActive = true;
+      this.btSelect = id;
+      this.toggleColor(id);
+      this.operation = operation;
+    }
+    else if (this.firstNumber !== null) {
+        this.placeholderNumber = this.firstNumber;
+        this.opActive = true;
+        this.operation = operation;
+        this.btSelect = id;
+        this.toggleColor(id);
+        this.mainNumber = "";
+    }
+    else {
+      return;
+    }
+  }
+
 
   // When you click in number
   addNumber(number) {
