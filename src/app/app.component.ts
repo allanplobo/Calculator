@@ -57,10 +57,6 @@ export class AppComponent {
     }
   }
 
-
-  // BUTTONS 
-
-
   // When you click "AC"
   btAc() {
     if (this.mainNumber !== "" || this.opActive == true) {
@@ -166,12 +162,12 @@ export class AppComponent {
       this.operation = operation;
     }
     else if (this.firstNumber !== null) {
-        this.placeholderNumber = this.firstNumber;
-        this.opActive = true;
-        this.operation = operation;
-        this.btSelect = id;
-        this.toggleColor(id);
-        this.mainNumber = "";
+      this.placeholderNumber = this.firstNumber;
+      this.opActive = true;
+      this.operation = operation;
+      this.btSelect = id;
+      this.toggleColor(id);
+      this.mainNumber = "";
     }
     else {
       return;
@@ -191,6 +187,9 @@ export class AppComponent {
     }
     else if (this.mainNumber == "" && this.placeholderNumber == "0") {
       this.mainNumber = "0" + ".";
+    }
+    else if ( this.mainNumber == "" && this.placeholderNumber !== "0" && this.placeholderNumber !== "" ){
+      this.mainNumber = this.placeholderNumber + ".";
     }
     else {
       return;
