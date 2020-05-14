@@ -90,8 +90,8 @@ export class AppComponent {
   btPosNeg() {
     if (this.mainNumber !== "") {
       this.mainNumber = (parseFloat(this.mainNumber) * -1).toString();
-    } else if (this.firstNumber !== "") {
-      this.mainNumber = (parseFloat(this.firstNumber) * -1).toString();
+    } else if (this.lastResult !== "") {
+      this.mainNumber = (parseFloat(this.lastResult) * -1).toString();
     } else {
       return;
     }
@@ -116,7 +116,12 @@ export class AppComponent {
 
   // When you click "="
   btEquals() {
-    if (this.firstNumber == "") {
+    if (this.lastResult !== "" && this.firstNumber == "" && this.mainNumber == "") {
+      this.operation = this.lastOperation[0];
+      var tempNumber = this.lastOperation[1];
+      this.doOperation(this.lastResult, this.operation, tempNumber);
+    }
+    else if (this.firstNumber == "") {
       return;
     }
     else if (this.firstNumber !== "" && this.mainNumber !== "") {
@@ -125,8 +130,14 @@ export class AppComponent {
       this.doOperation(this.firstNumber, this.operation, this.mainNumber);
       console.log(this.firstNumber, this.mainNumber, this.operation, this.lastResult);
     }
+    else if (this.firstNumber !== "" && this.mainNumber == "") {
+      this.opActive = false;
+      this.toggleColor(this.btSelect);
+      this.doOperation(this.firstNumber, this.operation, this.firstNumber);
+      console.log(this.firstNumber, this.mainNumber, this.operation, this.lastResult);
+    }
     else {
-      alert("opa!");
+      alert ("opa");
     }
   }
 
@@ -181,20 +192,21 @@ export class AppComponent {
 
   // When you click in number
   addNumber(number) {
-    this.mainNumber = this.mainNumber + number;
-  }
+      this.mainNumber = this.mainNumber + number;
+    }
+  
 
   // When you click in comma
   btComma() {
     if (this.mainNumber.indexOf(".") === -1 && this.mainNumber !== "") {
       this.mainNumber = this.mainNumber + ".";
     }
-    else if (this.mainNumber == "" && this.placeholderNumber == "0") {
+    else if (this.mainNumber == "" && (this.placeholderNumber == "0" || this.placeholderNumber !== "0")) {
       this.mainNumber = "0" + ".";
     }
-    else if (this.mainNumber == "" && this.placeholderNumber !== "0" && this.placeholderNumber !== "") {
-      this.mainNumber = this.placeholderNumber + ".";
-    }
+    // else if (this.mainNumber == "" && this.placeholderNumber !== "0" && this.placeholderNumber !== "" && this.placeholderNumber.indexOf(".") === -1) {
+    //   this.mainNumber = this.placeholderNumber + ".";
+    // }
     else {
       return;
     }
