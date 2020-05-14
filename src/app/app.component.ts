@@ -9,17 +9,19 @@ export class AppComponent {
 
   mainNumber: string = "";
   firstNumber: string = "";
-  lastNumber: string = "";
+  lastResult: string = "";
+
   placeholderNumber: string = "0";
+  operation: string = "";
+  btSelect: string = "";
 
   opActive: boolean = false;
   didAEquals: boolean = false;
-  operation: string = "";
-  btSelect: string = "";
+
   texts: any[] = [];
+  lastOperation: any[];
 
 
-  // Some Helper's Functions
 
   // This one, changes the color of Operation's buttons!
   toggleColor(id: string) {
@@ -42,11 +44,14 @@ export class AppComponent {
   // The "magic"!
   doOperation(n1: string, o: string, n2: string) {
     var array = [n1, o, n2];
+    this.lastOperation = [o, n2];
     var result = eval(array[0] + array[1] + array[2]);
     this.texts.push("The result of " + n1 + o + n2 + " = " + result);
-    this.firstNumber = result;
-    this.mainNumber = "";
     this.placeholderNumber = result;
+    this.lastResult = result;
+    this.firstNumber = "";
+    this.mainNumber = "";
+    this.operation = "";
     return result;
   }
 
@@ -72,7 +77,7 @@ export class AppComponent {
       this.texts.push("Cleaned! Last Result = " + this.placeholderNumber);
       this.placeholderNumber = "0";
       this.didAEquals = false;
-      this.lastNumber = "";
+      this.lastResult = "";
       this.firstNumber = "";
     }
     else {
@@ -104,7 +109,7 @@ export class AppComponent {
       this.mainNumber = this.mainNumber + "%";
       this.texts.push("The result of 0 * " + this.mainNumber + " = 0");
       this.mainNumber = "";
-      this.lastNumber = "0";
+      this.lastResult = "0";
       this.placeholderNumber = "0";
     }
   }
@@ -114,37 +119,32 @@ export class AppComponent {
     if (this.firstNumber == "") {
       return;
     }
-    else if (this.mainNumber !== "" && this.opActive == false) {
-      this.mainNumber = "0";
-    }
-    else if (this.didAEquals == false || this.didAEquals == true) {
-      this.lastNumber = this.firstNumber;
-      this.didAEquals = true;
-      console.log(this.firstNumber, this.mainNumber, this.operation);
+    else if (this.firstNumber !== "" && this.mainNumber !== "") {
       this.opActive = false;
       this.toggleColor(this.btSelect);
       this.doOperation(this.firstNumber, this.operation, this.mainNumber);
-      console.log(this.firstNumber, this.mainNumber, this.operation);
+      console.log(this.firstNumber, this.mainNumber, this.operation, this.lastResult);
     }
     else {
-      this.doOperation(this.lastNumber, this.operation, this.placeholderNumber);
+      alert("opa!");
     }
   }
 
   // When you click in some operator button
   mathOp(operation, id: string) {
+    if (this.operation !== "") {
+      this.opActive = false;
+      this.toggleColor(this.btSelect);
+      this.opActive = true;
+      this.btSelect = id;
+      this.toggleColor(id);
+      this.operation = operation;
+      return;
+    }
+
     if (this.mainNumber !== "") {
-      // this If is to check if will sum now or not;
-      if (this.opActive == false) {
-        this.firstNumber = this.mainNumber;
-        this.placeholderNumber = this.mainNumber;
-        this.opActive = true;
-        this.operation = operation;
-        this.btSelect = id;
-        this.toggleColor(id);
-        this.mainNumber = "";
-      }
-      else {
+      // if it is not empty, it will sum and the result will be firstNumber, to make a new operation afterwards
+      if (this.operation !== "") {
         this.firstNumber = this.doOperation(this.firstNumber, this.operation, this.mainNumber);
         this.operation = operation;
         this.opActive = false;
@@ -153,21 +153,25 @@ export class AppComponent {
         this.btSelect = id;
         this.toggleColor(id);
       }
-    } else if (this.opActive == true) {
-      this.opActive = false;
-      this.toggleColor(this.btSelect);
-      this.opActive = true;
-      this.btSelect = id;
-      this.toggleColor(id);
-      this.operation = operation;
+      else {
+        this.firstNumber = this.mainNumber;
+        this.placeholderNumber = this.mainNumber;
+        this.mainNumber = "";
+        this.opActive = true;
+        this.operation = operation;
+        this.btSelect = id;
+        this.toggleColor(id);
+      }
     }
-    else if (this.firstNumber !== null) {
-      this.placeholderNumber = this.firstNumber;
+    // Will use the lastResult to do a new operation, after a equals!
+    else if (this.lastResult !== "") {
+      this.firstNumber = this.lastResult;
+      this.placeholderNumber = this.lastResult;
+      this.mainNumber = "";
       this.opActive = true;
       this.operation = operation;
       this.btSelect = id;
       this.toggleColor(id);
-      this.mainNumber = "";
     }
     else {
       return;
@@ -188,7 +192,7 @@ export class AppComponent {
     else if (this.mainNumber == "" && this.placeholderNumber == "0") {
       this.mainNumber = "0" + ".";
     }
-    else if ( this.mainNumber == "" && this.placeholderNumber !== "0" && this.placeholderNumber !== "" ){
+    else if (this.mainNumber == "" && this.placeholderNumber !== "0" && this.placeholderNumber !== "") {
       this.mainNumber = this.placeholderNumber + ".";
     }
     else {
