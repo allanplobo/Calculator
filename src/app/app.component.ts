@@ -75,6 +75,9 @@ export class AppComponent {
       }
     }
 
+    if(mainNumber = "0"){
+
+    }
 
     // When you click "AC" to clean.
     btAc() {
