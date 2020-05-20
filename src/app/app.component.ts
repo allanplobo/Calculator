@@ -137,13 +137,13 @@ export class AppComponent {
       console.log(this.firstNumber, this.mainNumber, this.operation, this.lastResult);
     }
     else {
-      alert ("opa");
+      alert("opa");
     }
   }
 
   // When you click in some operator button
   mathOp(operation, id: string) {
-    if (this.operation !== "") {
+    if (this.operation !== "" && this.mainNumber == "") {
       this.opActive = false;
       this.toggleColor(this.btSelect);
       this.opActive = true;
@@ -152,7 +152,6 @@ export class AppComponent {
       this.operation = operation;
       return;
     }
-
     if (this.mainNumber !== "") {
       // if it is not empty, it will sum and the result will be firstNumber, to make a new operation afterwards
       if (this.operation !== "") {
@@ -192,9 +191,9 @@ export class AppComponent {
 
   // When you click in number
   addNumber(number) {
-      this.mainNumber = this.mainNumber + number;
-    }
-  
+    this.mainNumber = this.mainNumber + number;
+  }
+
 
   // When you click in comma
   btComma() {
