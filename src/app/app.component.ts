@@ -75,10 +75,6 @@ export class AppComponent {
       }
     }
 
-    if(mainNumber = "0"){
-
-    }
-
     // When you click "AC" to clean.
     btAc() {
       if (this.lastResult !== "" || this.didAEquals == true) {
