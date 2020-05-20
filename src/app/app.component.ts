@@ -62,13 +62,15 @@ export class AppComponent {
     }
   }
 
-  // When you click "AC"
+  // When you click "AC" to clean.
   btAc() {
-    if (this.mainNumber !== "" || this.opActive == true) {
-      this.texts.push("Cleaned! Last Result = " + this.mainNumber);
+    if (this.lastResult !== "") {
+      this.texts.push("Cleaned! Last Result = " + this.lastResult);
       this.mainNumber = "";
       this.firstNumber = "";
+      this.lastResult = "";
       this.placeholderNumber = "0";
+      this.operation = "";
       this.opActive = false;
       this.didAEquals = false;
       this.toggleColor(this.btSelect);
@@ -79,6 +81,17 @@ export class AppComponent {
       this.didAEquals = false;
       this.lastResult = "";
       this.firstNumber = "";
+      this.operation = "";
+      this.mainNumber = "";
+    }
+    else if (this.mainNumber != "" || this.firstNumber != "" && this.opActive == true ){
+      this.mainNumber = "";
+      this.firstNumber = "";
+      this.placeholderNumber = "0";
+      this.operation = "";
+      this.opActive = false;
+      this.didAEquals = false;
+      this.toggleColor(this.btSelect);
     }
     else {
       return;
