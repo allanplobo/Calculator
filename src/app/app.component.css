@@ -127,17 +127,3 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
-
-
-/* Now, The "paper" */
-
-#paper {
-    background-image: url('../assets/paperImage.jpg');
-    float: right;
-    border: 1px groove #0e0e0e;
-    width: 350px;
-    height: 500px;
-    padding-top: 3%;
-    font-family: 'Amatic SC', cursive;
-    font-size: 18px;
-}

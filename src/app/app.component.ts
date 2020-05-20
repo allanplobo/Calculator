@@ -45,7 +45,7 @@ export class AppComponent {
   doOperation(n1: string, o: string, n2: string) {
     var array = [n1, o, n2];
     this.lastOperation = [o, n2];
-    var result = eval(array[0] + array[1] + array[2]);
+    var result = eval(array[0] + array[1] + " " + array[2]);
     this.texts.push("The result of " + n1 + o + n2 + " = " + result);
     this.placeholderNumber = result;
     this.lastResult = result;
@@ -64,7 +64,7 @@ export class AppComponent {
 
   // When you click "AC" to clean.
   btAc() {
-    if (this.lastResult !== "") {
+    if (this.lastResult !== "" || this.didAEquals == true) {
       this.texts.push("Cleaned! Last Result = " + this.lastResult);
       this.mainNumber = "";
       this.firstNumber = "";
@@ -73,25 +73,17 @@ export class AppComponent {
       this.operation = "";
       this.opActive = false;
       this.didAEquals = false;
-      this.toggleColor(this.btSelect);
     }
-    else if (this.didAEquals == true) {
-      this.texts.push("Cleaned! Last Result = " + this.placeholderNumber);
-      this.placeholderNumber = "0";
-      this.didAEquals = false;
-      this.lastResult = "";
-      this.firstNumber = "";
-      this.operation = "";
-      this.mainNumber = "";
-    }
-    else if (this.mainNumber != "" || this.firstNumber != "" && this.opActive == true ){
+    else if (this.mainNumber != "" || this.firstNumber != "" && this.opActive == true) {
       this.mainNumber = "";
       this.firstNumber = "";
       this.placeholderNumber = "0";
       this.operation = "";
       this.opActive = false;
       this.didAEquals = false;
-      this.toggleColor(this.btSelect);
+      if (this.btSelect !== "") {
+        this.toggleColor(this.btSelect);
+      }
     }
     else {
       return;
