@@ -1,5 +1,5 @@
 #paper {
-    background-image: url('../assets/paperImage.jpg');
+    background-image: url('../../assets/paperImage.jpg');
     float: right;
     border: 1px groove #0e0e0e;
     width: 350px;

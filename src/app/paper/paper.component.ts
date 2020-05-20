@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-paper',
@@ -11,5 +11,9 @@ export class PaperComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Input() texts: string[] = [];
+
+
 
 }

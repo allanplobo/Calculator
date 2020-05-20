@@ -18,8 +18,8 @@ export class AppComponent {
   opActive: boolean = false;
   didAEquals: boolean = false;
 
-  texts: any[] = [];
-  lastOperation: any[];
+  resultTexts: string[] = [];
+  lastOperation: string[] = [];
 
 
 
@@ -46,7 +46,7 @@ export class AppComponent {
     var array = [n1, o, n2];
     this.lastOperation = [o, n2];
     var result = eval(array[0] + array[1] + " " + array[2]);
-    this.texts.push("The result of " + n1 + o + n2 + " = " + result);
+    this.resultTexts.push("The result of " + n1 + o + n2 + " = " + result);
     this.placeholderNumber = result;
     this.lastResult = result;
     this.firstNumber = "";
@@ -65,7 +65,7 @@ export class AppComponent {
   // When you click "AC" to clean.
   btAc() {
     if (this.lastResult !== "" || this.didAEquals == true) {
-      this.texts.push("Cleaned! Last Result = " + this.lastResult);
+      this.resultTexts.push("Cleaned! Last Result = " + this.lastResult);
       this.mainNumber = "";
       this.firstNumber = "";
       this.lastResult = "";
@@ -112,7 +112,7 @@ export class AppComponent {
     }
     else {
       this.mainNumber = this.mainNumber + "%";
-      this.texts.push("The result of 0 * " + this.mainNumber + " = 0");
+      this.resultTexts.push("The result of 0 * " + this.mainNumber + " = 0");
       this.mainNumber = "";
       this.lastResult = "0";
       this.placeholderNumber = "0";
