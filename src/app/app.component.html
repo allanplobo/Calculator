@@ -2,7 +2,7 @@
     <div id="screen">
         <div style="width: 100%; padding: 0;">
             <div id="calculator">
-                <input type="text" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}">
+                <input type="text" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}" (keypress)="keyboardInput($event)">
                 <div class="container" id="calculator-buttons">
                     <button class="button-color-white btn btn-light button" (click)="btAc()">AC</button>
                     <button class="button-color-white btn btn-light button " (click)="btPosNeg()">+/-</button>

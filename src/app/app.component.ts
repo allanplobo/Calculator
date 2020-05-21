@@ -69,147 +69,164 @@ export class AppComponent {
       }
     }
     else {
-        this.mainNumber = "";
-        this.lastResult = "0";
-        this.placeholderNumber = "0";
-      }
+      this.mainNumber = "";
+      this.lastResult = "0";
+      this.placeholderNumber = "0";
     }
-
-    // When you click "AC" to clean.
-    btAc() {
-      if (this.lastResult !== "" || this.didAEquals == true) {
-        this.resultTexts.push("Cleaned! Last Result = " + this.lastResult);
-        this.mainNumber = "";
-        this.firstNumber = "";
-        this.lastResult = "";
-        this.placeholderNumber = "0";
-        this.operation = "";
-        this.opActive = false;
-        this.didAEquals = false;
-        if (this.btSelect !== "") {
-          this.toggleColor(this.btSelect);
-        }
-      }
-      else if (this.mainNumber != "" || this.firstNumber != "" && this.opActive == true) {
-        this.mainNumber = "";
-        this.firstNumber = "";
-        this.placeholderNumber = "0";
-        this.operation = "";
-        this.opActive = false;
-        this.didAEquals = false;
-        if (this.btSelect !== "") {
-          this.toggleColor(this.btSelect);
-        }
-      }
-      else {
-        return;
-      }
-    }
-
-
-    // When you click "+/-"
-    btPosNeg() {
-      if (this.mainNumber !== "") {
-        this.mainNumber = (parseFloat(this.mainNumber) * -1).toString();
-      } else if (this.lastResult !== "") {
-        this.mainNumber = (parseFloat(this.lastResult) * -1).toString();
-      } else {
-        return;
-      }
-    }
-
-
-
-    // When you click "="
-    btEquals() {
-      if (this.lastResult !== "" && this.firstNumber == "" && this.mainNumber == "") {
-        this.operation = this.lastOperation[0];
-        var tempNumber = this.lastOperation[1];
-        this.doOperation(this.lastResult, this.operation, tempNumber);
-      }
-      else if (this.firstNumber == "") {
-        return;
-      }
-      else if (this.firstNumber !== "" && this.mainNumber !== "") {
-        this.opActive = false;
-        this.toggleColor(this.btSelect);
-        this.doOperation(this.firstNumber, this.operation, this.mainNumber);
-      }
-      else if (this.firstNumber !== "" && this.mainNumber == "") {
-        this.opActive = false;
-        this.toggleColor(this.btSelect);
-        this.doOperation(this.firstNumber, this.operation, this.firstNumber);
-      }
-      else {
-        alert("opa");
-      }
-    }
-
-    // When you click a operator button
-    mathOp(operation, id: string) {
-      if (this.operation !== "" && this.mainNumber == "") {
-        this.opActive = false;
-        this.toggleColor(this.btSelect);
-        this.opActive = true;
-        this.btSelect = id;
-        this.toggleColor(id);
-        this.operation = operation;
-        return;
-      }
-      if (this.mainNumber !== "") {
-        // if it is not empty, it will sum and the result will be firstNumber, to make a new operation afterwards
-        if (this.operation !== "") {
-          this.firstNumber = this.doOperation(this.firstNumber, this.operation, this.mainNumber);
-          this.operation = operation;
-          this.opActive = false;
-          this.toggleColor(this.btSelect);
-          this.opActive = true;
-          this.btSelect = id;
-          this.toggleColor(id);
-        }
-        else {
-          this.firstNumber = this.mainNumber;
-          this.placeholderNumber = this.mainNumber;
-          this.mainNumber = "";
-          this.opActive = true;
-          this.operation = operation;
-          this.btSelect = id;
-          this.toggleColor(id);
-        }
-      }
-      // Will use the lastResult to do a new operation, after a equals!
-      else if (this.lastResult !== "") {
-        this.firstNumber = this.lastResult;
-        this.placeholderNumber = this.lastResult;
-        this.mainNumber = "";
-        this.opActive = true;
-        this.operation = operation;
-        this.btSelect = id;
-        this.toggleColor(id);
-      }
-      else {
-        return;
-      }
-    }
-
-
-    // When you click in number
-    addNumber(number) {
-      this.mainNumber = this.mainNumber + number;
-    }
-
-
-    // When you click in comma
-    btComma() {
-      if (this.mainNumber.indexOf(".") === -1 && this.mainNumber !== "") {
-        this.mainNumber = this.mainNumber + ".";
-      }
-      else if (this.mainNumber == "" && (this.placeholderNumber == "0" || this.placeholderNumber !== "0")) {
-        this.mainNumber = "0" + ".";
-      }
-      else {
-        return;
-      }
-    }
-
   }
+
+  // When you click "AC" to clean.
+  btAc() {
+    if (this.lastResult !== "" || this.didAEquals == true) {
+      this.resultTexts.push("Cleaned! Last Result = " + this.lastResult);
+      this.mainNumber = "";
+      this.firstNumber = "";
+      this.lastResult = "";
+      this.placeholderNumber = "0";
+      this.operation = "";
+      this.opActive = false;
+      this.didAEquals = false;
+      if (this.btSelect !== "") {
+        this.toggleColor(this.btSelect);
+      }
+    }
+    else if (this.mainNumber != "" || this.firstNumber != "" && this.opActive == true) {
+      this.mainNumber = "";
+      this.firstNumber = "";
+      this.placeholderNumber = "0";
+      this.operation = "";
+      this.opActive = false;
+      this.didAEquals = false;
+      if (this.btSelect !== "") {
+        this.toggleColor(this.btSelect);
+      }
+    }
+    else {
+      return;
+    }
+  }
+
+
+  // When you click "+/-"
+  btPosNeg() {
+    if (this.mainNumber !== "") {
+      this.mainNumber = (parseFloat(this.mainNumber) * -1).toString();
+    } else if (this.lastResult !== "") {
+      this.mainNumber = (parseFloat(this.lastResult) * -1).toString();
+    } else {
+      return;
+    }
+  }
+
+
+
+  // When you click "="
+  btEquals() {
+    if (this.lastResult !== "" && this.firstNumber == "" && this.mainNumber == "") {
+      this.operation = this.lastOperation[0];
+      var tempNumber = this.lastOperation[1];
+      this.doOperation(this.lastResult, this.operation, tempNumber);
+    }
+    else if (this.firstNumber == "") {
+      return;
+    }
+    else if (this.firstNumber !== "" && this.mainNumber !== "") {
+      this.opActive = false;
+      this.toggleColor(this.btSelect);
+      this.doOperation(this.firstNumber, this.operation, this.mainNumber);
+    }
+    else if (this.firstNumber !== "" && this.mainNumber == "") {
+      this.opActive = false;
+      this.toggleColor(this.btSelect);
+      this.doOperation(this.firstNumber, this.operation, this.firstNumber);
+    }
+    else {
+      alert("opa");
+    }
+  }
+
+  // When you click a operator button
+  mathOp(operation, id: string) {
+    if (this.operation !== "" && this.mainNumber == "") {
+      this.opActive = false;
+      this.toggleColor(this.btSelect);
+      this.opActive = true;
+      this.btSelect = id;
+      this.toggleColor(id);
+      this.operation = operation;
+      return;
+    }
+    if (this.mainNumber !== "") {
+      // if it is not empty, it will sum and the result will be firstNumber, to make a new operation afterwards
+      if (this.operation !== "") {
+        this.firstNumber = this.doOperation(this.firstNumber, this.operation, this.mainNumber);
+        this.operation = operation;
+        this.opActive = false;
+        this.toggleColor(this.btSelect);
+        this.opActive = true;
+        this.btSelect = id;
+        this.toggleColor(id);
+      }
+      else {
+        this.firstNumber = this.mainNumber;
+        this.placeholderNumber = this.mainNumber;
+        this.mainNumber = "";
+        this.opActive = true;
+        this.operation = operation;
+        this.btSelect = id;
+        this.toggleColor(id);
+      }
+    }
+    // Will use the lastResult to do a new operation, after a equals!
+    else if (this.lastResult !== "") {
+      this.firstNumber = this.lastResult;
+      this.placeholderNumber = this.lastResult;
+      this.mainNumber = "";
+      this.opActive = true;
+      this.operation = operation;
+      this.btSelect = id;
+      this.toggleColor(id);
+    }
+    else {
+      return;
+    }
+  }
+
+
+  // When you click in number
+  addNumber(number) {
+    this.mainNumber = this.mainNumber + number;
+  }
+
+
+  // When you click in comma
+  btComma() {
+    if (this.mainNumber.indexOf(".") === -1 && this.mainNumber !== "") {
+      this.mainNumber = this.mainNumber + ".";
+    }
+    else if (this.mainNumber == "" && (this.placeholderNumber == "0" || this.placeholderNumber !== "0")) {
+      this.mainNumber = "0" + ".";
+    }
+    else {
+      return;
+    }
+  }
+
+  // Let's treat the input from the keyboard.
+
+  keyboardInput(event) {
+    console.log(this.mainNumber)
+
+    if (event.key != "0" || event.key != "1" || event.key != "2" || event.key != "3"
+      || event.key != "4" || event.key != "5" || event.key != "6" || event.key != "7"
+      || event.key != "8" || event.key != "9" || event.key != "0" || event.key != "+"
+      || event.key != "-" || event.key != "*" || event.key != "/" || event.key != ",") {
+      return;
+    }
+    if (event.key == '+') {
+      this.mathOp('+', 'plusButton');
+    }
+  }
+
+
+}
