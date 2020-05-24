@@ -1,36 +1,44 @@
-<div class="container " id="smartphone">
-    <div id="screen">
-        <div style="width: 100%; padding: 0;">
-            <div id="calculator">
-                <input type="text" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}" (keypress)="keyboardInput($event)">
-                <div class="container" id="calculator-buttons">
-                    <button class="button-color-white btn btn-light button" (click)="btAc()">AC</button>
-                    <button class="button-color-white btn btn-light button " (click)="btPosNeg()">+/-</button>
-                    <button class="button-color-white btn btn-light button " (click)="btPerc()">%</button>
-                    <button class="button-color-orange btn btn-light button " (click)="mathOp('/', 'diviButton')" id="diviButton">/</button>
-                    <br>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('7')">7</button>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('8')">8</button>
-                    <button class=" button-color-grey btn btn-light button " (click)="addNumber('9')">9</button>
-                    <button class="button-color-orange btn btn-light button " (click)="mathOp('*', 'multButton')" id="multButton">*</button>
-                    <br>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('4')">4</button>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('5')">5</button>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('6')">6</button>
-                    <button class="button-color-orange btn btn-light button " (click)="mathOp('-', 'subsButton')" id="subsButton">-</button>
-                    <br>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('1')">1</button>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('2')">2</button>
-                    <button class="button-color-grey btn btn-light button " (click)="addNumber('3')">3</button>
-                    <button class="button-color-orange btn btn-light button " (click)="mathOp('+', 'plusButton')" id="plusButton">+</button>
-                    <br>
-                    <button class="button-color-grey btn btn-light button zero-button" (click)="addNumber('0')">0</button>
-                    <button class="button-color-grey btn btn-light button " (click)="btComma()">,</button>
-                    <button class="button-color-orange btn btn-light button " (click)="btEquals()"> = </button>
+<div class="container" id="main">
+    <div class="container" id="smartphone">
+        <div id="screen">
+            <div style="width: 100%; padding: 0;">
+                <div id="calculator">
+                    <input disabled type="text" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}" (keypress)="keyboardInput($event)">
+                    <div class="container" id="calculator-buttons">
+                        <button class="button-color-white btn btn-light button" (click)="btAc()">AC</button>
+                        <button class="button-color-white btn btn-light button " (click)="btPosNeg()">+/-</button>
+                        <button class="button-color-white btn btn-light button " (click)="btPerc()">%</button>
+                        <button class="button-color-orange btn btn-light button " (click)="mathOp('/', 'diviButton')" id="diviButton">/</button>
+                        <br>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('7')">7</button>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('8')">8</button>
+                        <button class=" button-color-grey btn btn-light button " (click)="addNumber('9')">9</button>
+                        <button class="button-color-orange btn btn-light button " (click)="mathOp('*', 'multButton')" id="multButton">*</button>
+                        <br>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('4')">4</button>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('5')">5</button>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('6')">6</button>
+                        <button class="button-color-orange btn btn-light button " (click)="mathOp('-', 'subsButton')" id="subsButton">-</button>
+                        <br>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('1')">1</button>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('2')">2</button>
+                        <button class="button-color-grey btn btn-light button " (click)="addNumber('3')">3</button>
+                        <button class="button-color-orange btn btn-light button " (click)="mathOp('+', 'plusButton')" id="plusButton">+</button>
+                        <br>
+                        <button class="button-color-grey btn btn-light button zero-button" (click)="addNumber('0')">0</button>
+                        <button class="button-color-grey btn btn-light button " (click)="btComma()">,</button>
+                        <button class="button-color-orange btn btn-light button " (click)="btEquals()"> = </button>
+                    </div>
                 </div>
             </div>
+            <div class="container" id="gesture-space"></div>
         </div>
-        <div class="container" id="gesture-space"></div>
+    </div>
+    <app-paper [texts]="resultTexts"></app-paper>
+</div>
+<div class="container">
+    <div id="link-buttons">
+        <a href="https://www.linkedin.com/in/allanplobo/" class="btn btn-outline-light" style="margin-right: 2%;">My Linkedin</a>
+        <a href="https://github.com/allanplobo/Calculator" class="btn btn-outline-light">Repository</a>
     </div>
 </div>
-<app-paper [texts]="resultTexts"></app-paper>

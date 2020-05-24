@@ -1,11 +1,12 @@
 #paper {
     background-image: url('../../assets/paperImage.jpg');
-    float: right;
-    border: 1px groove #0e0e0e;
-    width: 350px;
+    float: center;
+    padding-top: 3%;
+    margin-top: 5%;
+    width: 310px;
     height: 500px;
     overflow: scroll;
-    padding-top: 3%;
+    border: none;
     font-family: 'Amatic SC', cursive;
     font-size: 18px;
 }

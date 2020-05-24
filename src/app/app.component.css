@@ -1,8 +1,17 @@
+#main {
+    width: 100%;
+    height: 542px;
+    margin: auto;
+    margin-top: -15px;
+}
+
+
 /* Let's build our iPho... Ops, Smartphone xD */
 
 #smartphone {
     width: 240px;
     height: 500px;
+    margin-left: 19%;
     padding-top: 150px;
     float: left;
     background-color: black;
@@ -16,14 +25,12 @@
     padding: 0;
     width: 100%;
     height: 360px;
-    /* background-color: red; */
 }
 
 #calculator {
     width: 100%;
     padding: 0;
     margin: 0;
-    /* background-color: blue; */
 }
 
 #number {
@@ -64,6 +71,11 @@
     height: 3px;
     border-radius: 9px 9px 9px 9px;
     background-color: white;
+}
+
+#link-buttons {
+    height: 20px;
+    padding-left: 39%;
 }
 
 .button {
@@ -126,4 +138,33 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+
+/* Some changes in reponsive */
+
+@media only screen and (max-width: 995px) {
+    #smartphone {
+        margin-left: 8%;
+        margin-bottom: 2%;
+        float: center;
+    }
+    #link-buttons {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #main {
+        height: 1050px;
+    }
+    #smartphone {
+        margin: auto;
+        float: none;
+    }
+    #link-buttons {
+        float: none;
+        margin: auto;
+        padding-left: 0;
+    }
 }

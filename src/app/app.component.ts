@@ -29,7 +29,7 @@ export class AppComponent {
       return;
     }
     else {
-      var x = document.getElementById(id);
+      let x = document.getElementById(id);
 
       if (this.opActive == true) {
         x.style.color = "#e0ae09";
@@ -43,9 +43,9 @@ export class AppComponent {
 
   // The "magic"!
   doOperation(n1: string, o: string, n2: string) {
-    var array = [n1, o, n2];
+    let array = [n1, o, n2];
     this.lastOperation = [o, n2];
-    var result = eval(array[0] + array[1] + " " + array[2]);
+    let result = eval(array[0] + array[1] + " " + array[2]);
     this.resultTexts.push("The result of " + n1 + o + n2 + " = " + result);
     this.placeholderNumber = result;
     this.lastResult = result;
@@ -124,7 +124,7 @@ export class AppComponent {
   btEquals() {
     if (this.lastResult !== "" && this.firstNumber == "" && this.mainNumber == "") {
       this.operation = this.lastOperation[0];
-      var tempNumber = this.lastOperation[1];
+      let tempNumber = this.lastOperation[1];
       this.doOperation(this.lastResult, this.operation, tempNumber);
     }
     else if (this.firstNumber == "") {

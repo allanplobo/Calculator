@@ -7,7 +7,7 @@ import { PaperComponent } from './paper/paper.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PaperComponent
+    PaperComponent,
   ],
   imports: [
     BrowserModule
