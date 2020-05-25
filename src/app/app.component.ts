@@ -30,7 +30,6 @@ export class AppComponent {
     }
     else {
       let x = document.getElementById(id);
-
       if (this.opActive == true) {
         x.style.color = "#e0ae09";
         x.style.backgroundColor = "white";
