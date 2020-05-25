@@ -198,25 +198,30 @@ export class AppComponent {
 
   // When you click in number
   addNumber(number) {
+    let x = document.getElementById('number-display');
+    if ( x.style.direction == "ltr"){
+      x.style.direction = "rtl"
+    }
     this.mainNumber += number;
   }
 
 
   // When you click in comma
-  btComma(id: string) {
-    if (this.mainNumber.indexOf(",") === -1 && this.mainNumber !== "") {
+  btComma() {
+    let x = document.getElementById('number-display');
+
+    if (this.mainNumber.indexOf(",") === -1 && this.mainNumber !== "") {    
+      x.style.direction = "ltr";
       this.mainNumber += ",";
     }
     else if (this.mainNumber == "" && (this.placeholderNumber == "0" || this.placeholderNumber !== "0")) {
-      let x = document.getElementById(id);
       x.style.direction = "ltr";
       this.mainNumber = "0,";
-      x.style.direction = "rtl";
-
     }
     else {
       return;
     }
+    
   }
 
 }

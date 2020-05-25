@@ -47,12 +47,13 @@
 }
 
 #number-display {
-    width: 100%;
+    direction: rtl;
+    width: 94%;
     float: right;
     text-align: right;
     color: white;
-    padding-right: 9%;
-    font-size: 48px;
+    padding-right: 8%;
+    font-size: 46px;
     font-family: Helvetica, Arial;
     background-color: black;
     border: none;
@@ -128,16 +129,6 @@
 .btn:active {
     outline: none !important;
     box-shadow: none;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input {
-    direction: rtl;
 }
 
 
