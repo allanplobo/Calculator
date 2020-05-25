@@ -14,8 +14,4 @@ export class PaperComponent implements OnInit {
 
   @Input() texts: string[] = [];
 
-  clearPaper(){
-    this.texts = [""];
-  }
-
 }

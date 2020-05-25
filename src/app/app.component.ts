@@ -51,7 +51,7 @@ export class AppComponent {
     let SResult = String(result).replace('.', ',');
     let SN1 = String(n1).replace('.', ',')
     let SN2 = String(n2).replace('.', ',');
-    this.resultTexts.push("The result of " + SN1 + o + SN2 + " = " + SResult);
+    this.resultTexts.unshift("The result of " + SN1 + o + SN2 + " = " + SResult);
     this.placeholderNumber = SResult;
     this.firstNumber = "";
     this.mainNumber = "";
@@ -130,7 +130,7 @@ export class AppComponent {
   // When you click "AC" button.
   btAc() {
     if (this.lastResult !== "" || this.didAEquals == true) {
-      this.resultTexts.push("Cleaned! Last Result = " + this.lastResult);
+      this.resultTexts.unshift("Cleaned! Last Result = " + this.lastResult);
       this.mainNumber = "";
       this.firstNumber = "";
       this.lastResult = "";
