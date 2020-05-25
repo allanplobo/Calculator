@@ -141,12 +141,16 @@
         float: center;
     }
     #link-buttons {
+        float: center;
+        margin: auto;
         text-align: center;
+        padding-left: 0;
     }
 }
 
 @media only screen and (max-width: 767px) {
     #main {
+        margin-top: 30px;
         height: 1050px;
     }
     #smartphone {
@@ -154,8 +158,6 @@
         float: none;
     }
     #link-buttons {
-        float: none;
-        margin: auto;
-        padding-left: 0;
+        margin-bottom: 30px;
     }
 }
