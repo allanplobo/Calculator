@@ -108,7 +108,7 @@ export class AppComponent {
     }
   }
 
-  // When you click "%"
+  // When you click "%" button
   btPerc() {
     if (this.mainNumber == "") {
       return;
@@ -128,7 +128,7 @@ export class AppComponent {
     }
   }
 
-  // When you click "AC" to clean.
+  // When you click "AC" button.
   btAc() {
     if (this.lastResult !== "" || this.didAEquals == true) {
       this.resultTexts.push("Cleaned! Last Result = " + this.lastResult);
@@ -160,7 +160,7 @@ export class AppComponent {
   }
 
 
-  // When you click "+/-"
+  // When you click "+/-" button
   btPosNeg() {
     if (this.mainNumber !== "") {
       this.mainNumber = (parseFloat(this.mainNumber) * -1).toString();
@@ -171,7 +171,7 @@ export class AppComponent {
     }
   }
 
-  // When you click "="
+  // When you click "=" button
   btEquals() {
     if (this.lastResult !== "" && this.firstNumber == "" && this.mainNumber == "") {
       this.operation = this.lastOperation[0];
@@ -196,21 +196,20 @@ export class AppComponent {
     }
   }
 
-  // When you click in number
+  // When you click in any number button
   addNumber(number) {
     let x = document.getElementById('number-display');
-    if ( x.style.direction == "ltr"){
+    if (x.style.direction == "ltr") {
       x.style.direction = "rtl"
     }
     this.mainNumber += number;
   }
 
-
-  // When you click in comma
+  // When you click in comma button
   btComma() {
     let x = document.getElementById('number-display');
 
-    if (this.mainNumber.indexOf(",") === -1 && this.mainNumber !== "") {    
+    if (this.mainNumber.indexOf(",") === -1 && this.mainNumber !== "") {
       x.style.direction = "ltr";
       this.mainNumber += ",";
     }
@@ -221,7 +220,7 @@ export class AppComponent {
     else {
       return;
     }
-    
+
   }
 
 }
