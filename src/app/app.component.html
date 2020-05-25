@@ -3,7 +3,7 @@
         <div id="screen">
             <div style="width: 100%; padding: 0;">
                 <div id="calculator">
-                    <input disabled type="text" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}" (keypress)="keyboardInput($event)">
+                    <input disabled type="text" id="number-display" placeholder="{{ placeholderNumber }}" value="{{ mainNumber }}">
                     <div class="container" id="calculator-buttons">
                         <button class="button-color-white btn btn-light button" (click)="btAc()">AC</button>
                         <button class="button-color-white btn btn-light button " (click)="btPosNeg()">+/-</button>
@@ -26,7 +26,7 @@
                         <button class="button-color-orange btn btn-light button " (click)="mathOp('+', 'plusButton')" id="plusButton">+</button>
                         <br>
                         <button class="button-color-grey btn btn-light button zero-button" (click)="addNumber('0')">0</button>
-                        <button class="button-color-grey btn btn-light button " (click)="btComma()">,</button>
+                        <button class="button-color-grey btn btn-light button " (click)="btComma('commaButton')" id="commaButton">,</button>
                         <button class="button-color-orange btn btn-light button " (click)="btEquals()"> = </button>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
 </div>
 <div class="container">
     <div id="link-buttons">
-        <a href="https://www.linkedin.com/in/allanplobo/" class="btn btn-outline-light" style="margin-right: 2%;">My Linkedin</a>
-        <a href="https://github.com/allanplobo/Calculator" class="btn btn-outline-light">Repository</a>
+        <a href="https://www.linkedin.com/in/allanplobo/" target="_blank" class="btn btn-outline-light" style="margin-right: 2%;">My Linkedin</a>
+        <a href="https://github.com/allanplobo/Calculator" target="_blank" class="btn btn-outline-light">Repository</a>
     </div>
 </div>
