@@ -41,7 +41,7 @@ export class AppComponent {
   }
 
   // Changes the input direction
-  toRtl(){
+  toRtl() {
     let x = document.getElementById('number-display');
     let compStyle = window.getComputedStyle(x).direction;
     if (compStyle == "ltr") {
@@ -49,7 +49,7 @@ export class AppComponent {
     }
   }
 
-  toLtr(){
+  toLtr() {
     let x = document.getElementById('number-display');
     let compStyle = window.getComputedStyle(x).direction;
     if (compStyle == "rtl") {
@@ -65,6 +65,10 @@ export class AppComponent {
     let array = [n1, o, n2];
     this.lastOperation = [o, n2];
     let result = eval(array[0] + array[1] + " " + array[2]).toFixed(1);
+    let tempResult = result.split(".");
+    if (tempResult[1] == "0") {
+      result = result.replace('.0', '');
+    }
     this.lastResult = result;
     let SResult = String(result).replace('.', ',');
     let SN1 = String(n1).replace('.', ',');
@@ -76,7 +80,7 @@ export class AppComponent {
     this.operation = "";
     this.toLtr();
     return result;
-    
+
   }
 
 
