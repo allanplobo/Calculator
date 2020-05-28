@@ -40,23 +40,43 @@ export class AppComponent {
     }
   }
 
+  // Changes the input direction
+  toRtl(){
+    let x = document.getElementById('number-display');
+    let compStyle = window.getComputedStyle(x).direction;
+    if (compStyle == "ltr") {
+      x.style.direction = "rtl"
+    }
+  }
+
+  toLtr(){
+    let x = document.getElementById('number-display');
+    let compStyle = window.getComputedStyle(x).direction;
+    if (compStyle == "rtl") {
+      x.style.direction = "ltr"
+    }
+  }
+
   // The "magic"!
   doOperation(n1: string, o: string, n2: string) {
+
     n1 = String(n1).replace(',', '.');
     n2 = String(n2).replace(',', '.');
     let array = [n1, o, n2];
     this.lastOperation = [o, n2];
-    let result = eval(array[0] + array[1] + " " + array[2]);
+    let result = eval(array[0] + array[1] + " " + array[2]).toFixed(1);
     this.lastResult = result;
     let SResult = String(result).replace('.', ',');
-    let SN1 = String(n1).replace('.', ',')
+    let SN1 = String(n1).replace('.', ',');
     let SN2 = String(n2).replace('.', ',');
     this.resultTexts.unshift("The result of " + SN1 + o + SN2 + " = " + SResult);
     this.placeholderNumber = SResult;
     this.firstNumber = "";
     this.mainNumber = "";
     this.operation = "";
+    this.toLtr();
     return result;
+    
   }
 
 
@@ -84,7 +104,7 @@ export class AppComponent {
       }
       else {
         this.firstNumber = this.mainNumber;
-        this.placeholderNumber = this.mainNumber;
+        this.placeholderNumber = this.mainNumber.replace('.', ',');
         this.mainNumber = "";
         this.opActive = true;
         this.operation = operation;
@@ -95,7 +115,7 @@ export class AppComponent {
     // Will use the lastResult to do a new operation, after a equals!
     else if (this.lastResult !== "") {
       this.firstNumber = this.lastResult;
-      this.placeholderNumber = this.lastResult;
+      this.placeholderNumber = this.lastResult.replace('.', ',');
       this.mainNumber = "";
       this.opActive = true;
       this.operation = operation;
@@ -161,10 +181,11 @@ export class AppComponent {
 
   // When you click "+/-" button
   btPosNeg() {
+    this.toLtr();
     if (this.mainNumber !== "") {
-      this.mainNumber = (parseFloat(this.mainNumber) * -1).toString();
+      this.mainNumber = (parseFloat(this.mainNumber.replace(",", ".")) * -1).toString().replace('.', ',');
     } else if (this.lastResult !== "") {
-      this.mainNumber = (parseFloat(this.lastResult) * -1).toString();
+      this.mainNumber = (parseFloat(this.lastResult.replace(",", ".")) * -1).toString().replace('.', ',');
     } else {
       return;
     }
@@ -193,27 +214,23 @@ export class AppComponent {
     else {
       alert("opa");
     }
+
   }
 
   // When you click in any number button
   addNumber(number) {
-    let x = document.getElementById('number-display');
-    if (x.style.direction == "ltr") {
-      x.style.direction = "rtl"
-    }
+    this.toRtl();
     this.mainNumber += number;
   }
 
   // When you click in comma button
   btComma() {
-    let x = document.getElementById('number-display');
-
     if (this.mainNumber.indexOf(",") === -1 && this.mainNumber !== "") {
-      x.style.direction = "ltr";
+      this.toLtr();
       this.mainNumber += ",";
     }
     else if (this.mainNumber == "" && (this.placeholderNumber == "0" || this.placeholderNumber !== "0")) {
-      x.style.direction = "ltr";
+      this.toLtr();
       this.mainNumber = "0,";
     }
     else {
