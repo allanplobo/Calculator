@@ -1,7 +1,8 @@
-# Calculator (Angular 9 + Boostrap 4)
+# Calculator
 Hey, Welcome! This is a Simple Project, just to practice. =)
 
-Link to use: https://ios-calculator.vercel.app/
+## This project uses:
+- Angular (https://angular.io)
+- Bootstrap (https://getbootstrap.com/)
 
-Add me:
-https://www.linkedin.com/in/allanplobo/
+Link to use: https://ios-calculator.vercel.app/
